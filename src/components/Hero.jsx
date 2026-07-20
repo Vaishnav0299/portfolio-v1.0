@@ -1,58 +1,59 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { aboutData } from '../data/portfolioData';
 
 export function Hero() {
   return (
-    <section id="home" class="hero-section">
-      <div class="hero-container">
+    <section id="home" className="hero-section">
+      <div className="hero-container">
         
         {/* Profile Avatar Card */}
-        <div class="hero-avatar-wrapper">
+        <div className="hero-avatar-wrapper">
           <img
             src={aboutData.avatarUrl}
             alt={aboutData.name}
-            class="hero-avatar-img"
+            className="hero-avatar-img"
           />
-          <div class="avatar-glow-ring"></div>
+          <div className="avatar-glow-ring"></div>
         </div>
 
-        <div class="badge-container">
-          <span class="status-badge">
-            <span class="pulse-dot"></span> Available for Opportunities
+        <div className="badge-container">
+          <span className="status-badge">
+            <span className="pulse-dot"></span> Available for Opportunities
           </span>
         </div>
         
-        <h1 class="hero-title">
-          Hi, I'm <span class="text-gradient">{aboutData.name}</span>
+        <h1 className="hero-title">
+          Hi, I'm <span className="text-gradient">{aboutData.name}</span>
         </h1>
-        <p class="hero-subtitle">
+        <p className="hero-subtitle">
           {aboutData.title}
         </p>
 
         {/* What I Do Tags */}
-        <div class="what-i-do-bar" style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.5rem' }}>
-          <span class="tech-tag" style={{ fontSize: '0.85rem', padding: '0.35rem 0.85rem', borderRadius: '20px', background: 'rgba(139, 92, 246, 0.15)', borderColor: 'rgba(139, 92, 246, 0.3)', color: 'var(--text-primary)', fontWeight: 600 }}>⚡ Full-Stack Web Development</span>
+        <div className="what-i-do-bar" style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '1.5rem' }}>
+          <span className="tech-tag" style={{ fontSize: '0.85rem', padding: '0.35rem 0.85rem', borderRadius: '20px', background: 'rgba(139, 92, 246, 0.15)', borderColor: 'rgba(139, 92, 246, 0.3)', color: 'var(--text-primary)', fontWeight: 600 }}>⚡ Full-Stack Web Development</span>
           <span class="tech-tag" style={{ fontSize: '0.85rem', padding: '0.35rem 0.85rem', borderRadius: '20px', background: 'rgba(6, 182, 212, 0.15)', borderColor: 'rgba(6, 182, 212, 0.3)', color: 'var(--text-primary)', fontWeight: 600 }}>🤖 AI & Machine Learning</span>
-          <span class="tech-tag" style={{ fontSize: '0.85rem', padding: '0.35rem 0.85rem', borderRadius: '20px', background: 'rgba(236, 72, 153, 0.15)', borderColor: 'rgba(236, 72, 153, 0.3)', color: 'var(--text-primary)', fontWeight: 600 }}>📊 Data Science & Analytics</span>
+          <span className="tech-tag" style={{ fontSize: '0.85rem', padding: '0.35rem 0.85rem', borderRadius: '20px', background: 'rgba(236, 72, 153, 0.15)', borderColor: 'rgba(236, 72, 153, 0.3)', color: 'var(--text-primary)', fontWeight: 600 }}>📊 Data Science & Analytics</span>
         </div>
 
-        <p class="hero-description">
+        <p className="hero-description">
           Building high-performance web applications, scalable architectural backends, and intelligent data science pipelines. Focused on clean code, modern engineering, and intuitive user experiences.
         </p>
 
-        <div class="hero-cta-group">
-          <a href="#projects" class="btn btn-primary">
+        <div className="hero-cta-group">
+          <Link to="/projects" className="btn btn-primary">
             <span>Explore Projects</span>
             <ArrowRight style={{ width: 18, height: 18 }} />
-          </a>
-          <a href="#contact" class="btn btn-secondary">
+          </Link>
+          <Link to="/contact" className="btn btn-secondary">
             <Mail style={{ width: 18, height: 18 }} />
             <span>Get In Touch</span>
-          </a>
+          </Link>
         </div>
 
-        <div class="social-quick-links">
+        <div className="social-quick-links">
           <a href={aboutData.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub Profile">
             <Github style={{ width: 20, height: 20 }} />
           </a>

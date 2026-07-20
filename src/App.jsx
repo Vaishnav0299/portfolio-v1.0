@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Dashboard } from './components/Dashboard';
-import { Projects } from './components/Projects';
-import { Skills } from './components/Skills';
-import { Timeline } from './components/Timeline';
-import { Contact } from './components/Contact';
-import { Terminal } from './components/Terminal';
 import { CommandPalette } from './components/CommandPalette';
 import { Toast } from './components/Toast';
 import { Footer } from './components/Footer';
 
+// Pages
+import { Home } from './pages/Home';
+import { AboutPage } from './pages/AboutPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { ProjectsPage } from './pages/ProjectsPage';
+import { SkillsPage } from './pages/SkillsPage';
+import { ContactPage } from './pages/ContactPage';
+import { TerminalPage } from './pages/TerminalPage';
+
 export function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('os-theme') || 'dark');
-  const [activeSection, setActiveSection] = useState('home');
   const [isCmdOpen, setIsCmdOpen] = useState(false);
   const [toast, setToast] = useState(null);
 
@@ -38,7 +39,7 @@ export function App() {
   // 3D Card Tilt Mouse Interaction
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const card = e.target.closest('.portfolio-card, .metric-card, .skill-category-card, .visualization-card, .about-card, .contact-card');
+      const card = e.target.closest('.portfolio-card, .metric-card, .skill-category-card, .visualization-card, .about-card, .contact-card, .portal-card');
       if (!card) return;
 
       const rect = card.getBoundingClientRect();
@@ -54,9 +55,9 @@ export function App() {
     };
 
     const handleMouseLeave = (e) => {
-      const card = e.target.closest('.portfolio-card, .metric-card, .skill-category-card, .visualization-card, .about-card, .contact-card');
+      const card = e.target.closest('.portfolio-card, .metric-card, .skill-category-card, .visualization-card, .about-card, .contact-card, .portal-card');
       if (card) {
-        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0deg) scale(1)`;
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0deg) scale(1)';
       }
     };
 
@@ -69,61 +70,45 @@ export function App() {
     };
   }, []);
 
-  // Section Scroll Tracking
-  useEffect(() => {
-    const sections = document.querySelectorAll('section[id]');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.getAttribute('id'));
-          }
-        });
-      },
-      { threshold: 0.25, rootMargin: '-10% 0px -40% 0px' }
-    );
-
-    sections.forEach((sec) => observer.observe(sec));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div class="app-root">
-      {/* Background Grid & Ambient Glow Orbs */}
-      <div class="bg-grid-overlay"></div>
-      <div class="ambient-glow">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+    <BrowserRouter>
+      <div className="app-root">
+        {/* Background Grid & Ambient Glow Orbs */}
+        <div className="bg-grid-overlay"></div>
+        <div className="ambient-glow">
+          <div className="orb orb-1"></div>
+          <div className="orb orb-2"></div>
+          <div className="orb orb-3"></div>
+        </div>
+
+        <Toast toast={toast} />
+
+        <Navbar
+          onOpenCmd={() => setIsCmdOpen(true)}
+          theme={theme}
+          onToggleTheme={handleToggleTheme}
+        />
+
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/contact" element={<ContactPage onShowToast={showToast} />} />
+            <Route path="/terminal" element={<TerminalPage />} />
+          </Routes>
+        </main>
+
+        <CommandPalette
+          isOpen={isCmdOpen}
+          onClose={() => setIsCmdOpen(false)}
+        />
+
+        <Footer />
       </div>
-
-      <Toast toast={toast} />
-
-      <Navbar
-        activeSection={activeSection}
-        onOpenCmd={() => setIsCmdOpen(true)}
-        theme={theme}
-        onToggleTheme={handleToggleTheme}
-      />
-
-      <main class="main-content">
-        <Hero />
-        <About />
-        <Dashboard />
-        <Projects />
-        <Skills />
-        <Timeline />
-        <Contact onShowToast={showToast} />
-        <Terminal />
-      </main>
-
-      <CommandPalette
-        isOpen={isCmdOpen}
-        onClose={() => setIsCmdOpen(false)}
-      />
-
-      <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 
