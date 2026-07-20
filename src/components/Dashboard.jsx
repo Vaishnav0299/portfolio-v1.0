@@ -14,14 +14,6 @@ export function Dashboard({ theme }) {
     return `https://streak-stats.demolab.com?user=Vaishnav0299&theme=transparent&hide_border=true&ring=${baseColor}&fire=${baseColor}&currStreakNum=${isDark ? 'ffffff' : '0f172a'}&sideNums=${isDark ? 'ffffff' : '0f172a'}&sideLabels=${isDark ? 'a1a1aa' : '475569'}&currStreakLabel=${baseColor}&dates=${isDark ? 'a1a1aa' : '475569'}`;
   };
 
-  // Helper to construct Vercel GitHub readme stats URL based on theme (hiding low-impact stats)
-  const getGithubStatsUrl = (currentTheme) => {
-    const isDark = currentTheme === 'dark';
-    const titleColor = '8b5cf6'; // Purple
-    const iconColor = '06b6d4'; // Cyan
-    const textColor = isDark ? 'a1a1aa' : '475569';
-    return `https://github-readme-stats.vercel.app/api?username=Vaishnav0299&theme=transparent&hide_border=true&show_icons=true&title_color=${titleColor}&text_color=${textColor}&icon_color=${iconColor}&hide=stars,followers,prs,issues&hide_title=true&hide_rank=true`;
-  };
 
   // Sort repos dynamically in React to determine top repo
   const topRepo = repos && repos.length > 0
@@ -105,16 +97,6 @@ export function Dashboard({ theme }) {
             <img 
               src={getStreakStatsUrl(theme)}
               alt="GitHub Streak Stats" 
-              style={{ width: '100%', height: '100%', maxHeight: '140px', objectFit: 'contain' }}
-            />
-          </div>
-
-          {/* Card 3: GitHub Core Stats Embed */}
-          <div className="metric-card github-stats-card" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '170px', padding: '1rem' }}>
-            <div className="card-glow"></div>
-            <img 
-              src={getGithubStatsUrl(theme)} 
-              alt="GitHub Core Stats"
               style={{ width: '100%', height: '100%', maxHeight: '140px', objectFit: 'contain' }}
             />
           </div>
