@@ -4,9 +4,9 @@
   "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node -e \"require('fs').copyFileSync('index.source.html', 'index.html')\" && node ./node_modules/vite/bin/vite.js",
-    "build": "node -e \"require('fs').copyFileSync('index.source.html', 'index.html')\" && node ./node_modules/vite/bin/vite.js build && node -e \"require('fs').copyFileSync('dist/index.html', 'index.html'); require('fs').cpSync('dist/assets', 'assets', {recursive: true}); console.log('Synced production bundle to root for GitHub Pages!');\"",
-    "preview": "node ./node_modules/vite/bin/vite.js preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "lucide-react": "^0.344.0",
