@@ -83,10 +83,30 @@ export function useTelemetry(username = 'Vaishnav0299') {
               }
             })
           );
+
+          // Fetch languages for all repositories in parallel
+          const allRepos = [...publicRepos, ...contributedRepos];
+          const reposWithLanguages = await Promise.all(
+            allRepos.map(async (repo) => {
+              try {
+                const res = await fetch(`https://api.github.com/repos/${repo.full_name}/languages`);
+                if (res.ok) {
+                  const langs = await res.json();
+                  return {
+                    ...repo,
+                    languages_list: Object.keys(langs)
+                  };
+                }
+              } catch (e) {
+                console.warn(`Failed to fetch languages for ${repo.full_name}:`, e);
+              }
+              return repo;
+            })
+          );
           
           setData({
             profile,
-            repos: [...publicRepos, ...contributedRepos],
+            repos: reposWithLanguages,
             compiledAt: Math.floor(Date.now() / 1000),
           });
         } catch (apiErr) {

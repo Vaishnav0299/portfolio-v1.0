@@ -136,7 +136,13 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 1,
-      "default_branch": "main"
+      "default_branch": "main",
+      "languages_list": [
+        "JavaScript",
+        "Python",
+        "CSS",
+        "HTML"
+      ]
     },
     {
       "id": 1278878098,
@@ -239,7 +245,12 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "languages_list": [
+        "TypeScript",
+        "CSS",
+        "HTML"
+      ]
     },
     {
       "id": 1272249985,
@@ -342,7 +353,12 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "languages_list": [
+        "TypeScript",
+        "CSS",
+        "HTML"
+      ]
     },
     {
       "id": 1272001886,
@@ -445,7 +461,13 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "languages_list": [
+        "TypeScript",
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ]
     },
     {
       "id": 1271076114,
@@ -548,7 +570,11 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "languages_list": [
+        "JavaScript",
+        "TypeScript"
+      ]
     },
     {
       "id": 1149374625,
@@ -628,7 +654,12 @@
       "forks": 0,
       "open_issues": 0,
       "watchers": 0,
-      "default_branch": "main"
+      "default_branch": "main",
+      "languages_list": [
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ]
     }
   ],
   "compiledAt": 1784368470
