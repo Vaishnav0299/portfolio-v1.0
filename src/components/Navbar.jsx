@@ -12,7 +12,7 @@ export function Navbar({ onOpenCmd, theme, onToggleTheme }) {
         <nav className="nav-links">
           <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink>
           <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>About</NavLink>
-          <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>Dashboard</NavLink>
+
           <NavLink to="/projects" className={({ isActive }) => isActive ? 'active' : ''}>Projects</NavLink>
           <NavLink to="/skills" className={({ isActive }) => isActive ? 'active' : ''}>Skills</NavLink>
           <NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Contact</NavLink>
@@ -26,7 +26,7 @@ export function Navbar({ onOpenCmd, theme, onToggleTheme }) {
           <button id="theme-toggle" onClick={onToggleTheme} aria-label="Toggle Theme">
             {theme === 'dark' ? <Sun className="sun-icon" /> : <Moon className="moon-icon" />}
           </button>
-          <Link to="/dashboard" className="btn btn-primary btn-sm">Live Dashboard</Link>
+
         </div>
       </div>
     </header>

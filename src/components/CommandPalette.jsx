@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Home, BarChart2, FolderGit2, Cpu, Briefcase, Terminal as TermIcon, Github, Linkedin, Mail } from 'lucide-react';
+import { Search, Home, FolderGit2, Cpu, Briefcase, Terminal as TermIcon, Github, Linkedin, Mail } from 'lucide-react';
 
 const cmdItems = [
   { id: 1, label: 'Go to Home', target: '/', key: '/', icon: Home, action: 'nav' },
   { id: 2, label: 'Go to About Me', target: '/about', key: '/about', icon: Briefcase, action: 'nav' },
-  { id: 3, label: 'Go to Telemetry Dashboard', target: '/dashboard', key: '/dashboard', icon: BarChart2, action: 'nav' },
+
   { id: 4, label: 'View Projects', target: '/projects', key: '/projects', icon: FolderGit2, action: 'nav' },
   { id: 5, label: 'View Skills & Tech Stack', target: '/skills', key: '/skills', icon: Cpu, action: 'nav' },
   { id: 6, label: 'Get in Touch (Contact)', target: '/contact', key: '/contact', icon: Mail, action: 'nav' },

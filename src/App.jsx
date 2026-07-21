@@ -8,7 +8,7 @@ import { Footer } from './components/Footer';
 // Pages
 import { Home } from './pages/Home';
 import { AboutPage } from './pages/AboutPage';
-import { DashboardPage } from './pages/DashboardPage';
+
 import { ProjectsPage } from './pages/ProjectsPage';
 import { SkillsPage } from './pages/SkillsPage';
 import { ContactPage } from './pages/ContactPage';
@@ -93,7 +93,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/dashboard" element={<DashboardPage theme={theme} />} />
+
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/skills" element={<SkillsPage />} />
             <Route path="/contact" element={<ContactPage onShowToast={showToast} />} />

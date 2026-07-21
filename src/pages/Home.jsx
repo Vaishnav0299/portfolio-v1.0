@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Hero } from '../components/Hero';
-import { User, FolderGit2, BarChart2, Cpu, Terminal as TermIcon, Mail, ArrowRight } from 'lucide-react';
+import { User, FolderGit2, Cpu, Terminal as TermIcon, Mail, ArrowRight } from 'lucide-react';
 
 export function Home() {
   const portalCards = [
@@ -19,13 +19,7 @@ export function Home() {
       icon: FolderGit2,
       colorClass: 'accent-secondary',
     },
-    {
-      title: 'Live Telemetry',
-      desc: 'View real-time statistics of my GitHub contributions, repository explorer, and code metrics.',
-      link: '/dashboard',
-      icon: BarChart2,
-      colorClass: 'accent-tertiary',
-    },
+
     {
       title: 'Technical Skills',
       desc: 'Deep-dive into my frontend, backend, database, and AI technical stacks.',

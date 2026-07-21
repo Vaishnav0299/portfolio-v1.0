@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const IGNORED_REPOS = ['Vaishnav0299', 'Deskify'];
+const IGNORED_REPOS = ['Vaishnav0299'];
 
 const isCourseOrFork = (repo) => {
   if (repo.fork) return true;
@@ -104,7 +104,7 @@ export function useTelemetry(username = 'Vaishnav0299') {
               return repo;
             })
           );
-          
+
           setData({
             profile,
             repos: reposWithLanguages,
