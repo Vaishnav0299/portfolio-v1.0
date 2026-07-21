@@ -2,6 +2,23 @@ import React from 'react';
 import { Package, Star, GitCommit, PieChart, GitFork } from 'lucide-react';
 import { useTelemetry } from '../hooks/useTelemetry';
 
+const getLanguageColor = (lang) => {
+  const colors = {
+    typescript: '#3178c6',
+    javascript: '#f1e05a',
+    css: '#563d7c',
+    html: '#e34c26',
+    python: '#3572a5',
+    go: '#00add8',
+    rust: '#dea584',
+    java: '#b07219',
+    cpp: '#f34b7d',
+    c: '#555555',
+  };
+  const key = (lang || '').toLowerCase();
+  return colors[key] || 'var(--accent-primary)';
+};
+
 export function Dashboard({ theme }) {
   const { profile, repos, compiledAt, loading, error } = useTelemetry('Vaishnav0299');
 
@@ -149,7 +166,7 @@ export function Dashboard({ theme }) {
               </div>
               <div className="repo-meta-footer" style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.4rem', marginTop: '0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 1 }}>
                 <div className="repo-lang" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
-                  <span className="lang-dot"></span>
+                  <span className="lang-dot" style={{ background: getLanguageColor(topRepo.language) }}></span>
                   <span>{topRepo.language || "Code"}</span>
                 </div>
                 <div className="repo-stats-aside" style={{ display: 'flex', gap: '0.6rem', color: 'var(--text-muted)', fontSize: '0.775rem' }}>
@@ -211,7 +228,7 @@ export function Dashboard({ theme }) {
                   </div>
                   <div className="repo-meta-footer">
                     <div className="repo-lang">
-                      <span className="lang-dot"></span>
+                      <span className="lang-dot" style={{ background: getLanguageColor(repo.language) }}></span>
                       <span>{repo.language || "Code"}</span>
                     </div>
                     <div className="repo-stats-aside">
