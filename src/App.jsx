@@ -4,6 +4,7 @@ import { Navbar } from './components/Navbar';
 import { CommandPalette } from './components/CommandPalette';
 import { Toast } from './components/Toast';
 import { Footer } from './components/Footer';
+import { ThreeBackground } from './components/ThreeBackground';
 
 // Pages
 import { Home } from './pages/Home';
@@ -75,6 +76,7 @@ export function App() {
       <div className="app-root">
         {/* Background Grid & Ambient Glow Orbs */}
         <div className="bg-grid-overlay"></div>
+        <ThreeBackground />
         <div className="ambient-glow">
           <div className="orb orb-1"></div>
           <div className="orb orb-2"></div>
