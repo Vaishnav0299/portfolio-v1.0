@@ -40,9 +40,8 @@ export function Terminal() {
       "🚀 Featured Public Repositories:",
       "  1. Productivity-Pro [Full-Stack Workspace App]",
       "  2. My Study Assistant [AI Study Platform]",
-      "  3. Deskify [Web Utility]",
-      "  4. Form-Builder [Drag & Drop Form Engine]",
-      "  5. Mentor Backend [REST API Service]"
+      "  3. Form-Builder [Drag & Drop Form Engine]",
+      "  4. Mentor Backend [REST API Service]"
     ],
     contact: [
       "📫 Contact Channels:",

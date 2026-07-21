@@ -24,17 +24,6 @@ export const projectsData = [
     {
         id: 3,
         category: "fullstack",
-        name: "Deskify",
-        type: "Web Utility",
-        badgeClass: "",
-        desc: "A lightweight, 100% client-side web utility to instantly convert vertical mobile wallpapers into widescreen desktop backgrounds. Zero backend, zero tracking, pure JavaScript.",
-        stack: ["TypeScript", "HTML5", "Canvas API", "CSS3"],
-        github: "https://github.com/Vaishnav0299/Deskify",
-        live: null
-    },
-    {
-        id: 4,
-        category: "fullstack",
         name: "Form-Builder",
         type: "Full Stack",
         badgeClass: "",
@@ -44,7 +33,7 @@ export const projectsData = [
         live: null
     },
     {
-        id: 5,
+        id: 4,
         category: "fullstack",
         name: "Mentor Backend Service",
         type: "Backend API",

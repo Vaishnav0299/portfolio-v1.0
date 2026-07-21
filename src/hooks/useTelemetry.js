@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const IGNORED_REPOS = ['Vaishnav0299'];
+const IGNORED_REPOS = ['Vaishnav0299', 'Deskify'];
 
 const isCourseOrFork = (repo) => {
   if (repo.fork) return true;
