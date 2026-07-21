@@ -2,6 +2,7 @@ import React from 'react';
 import { Package, Star, GitCommit, PieChart, GitFork } from 'lucide-react';
 import { useTelemetry } from '../hooks/useTelemetry';
 import { getLanguageColor } from '../utils/githubUtils';
+import { LanguageStatsBar } from './LanguageStatsBar';
 
 export function Dashboard({ theme }) {
   const { profile, repos, compiledAt, loading, error } = useTelemetry('Vaishnav0299');
@@ -148,18 +149,18 @@ export function Dashboard({ theme }) {
                   {topRepo.description || "Open source repository developed by Vaishnav Gaware."}
                 </p>
               </div>
+              {/* Languages Stats Bar */}
+              <div style={{ zIndex: 1, padding: '0 0.5rem' }}>
+                <LanguageStatsBar languages={topRepo.languages} />
+              </div>
+
               <div className="repo-meta-footer" style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.4rem', marginTop: '0.8rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 1 }}>
-                <div className="repo-lang" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center', fontSize: '0.8rem' }}>
-                  {((topRepo.languages_list && topRepo.languages_list.length > 0)
-                    ? topRepo.languages_list
-                    : (topRepo.language ? [topRepo.language] : [])
-                  ).map((lang, index) => (
-                    <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                      <span className="lang-dot" style={{ background: getLanguageColor(lang), margin: 0 }}></span>
-                      <span style={{ fontWeight: 600 }}>{lang}</span>
-                    </div>
-                  ))}
-                </div>
+                {(!topRepo.languages || Object.keys(topRepo.languages).length === 0) ? (
+                  <div className="repo-lang" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem' }}>
+                    <span className="lang-dot" style={{ background: getLanguageColor(topRepo.language) }}></span>
+                    <span>{topRepo.language || "Code"}</span>
+                  </div>
+                ) : <div></div>}
                 <div className="repo-stats-aside" style={{ display: 'flex', gap: '0.6rem', color: 'var(--text-muted)', fontSize: '0.775rem' }}>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}><Star style={{ width: 12, height: 12 }} /> {topRepo.stargazers_count}</span>
                   <span style={{ display: 'flex', alignItems: 'center', gap: '0.2rem' }}><GitFork style={{ width: 12, height: 12 }} /> {topRepo.forks_count}</span>
@@ -193,7 +194,7 @@ export function Dashboard({ theme }) {
             sortedRepos.slice(0, 6).map(repo => {
               const isContribution = repo.owner && repo.owner.login.toLowerCase() !== 'vaishnav0299';
               return (
-                <div key={repo.id} className="repo-card">
+                <div key={repo.id} className="repo-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.6rem' }}>
                       <a href={repo.html_url} target="_blank" rel="noreferrer" className="repo-name" style={{ marginBottom: 0 }}>
@@ -211,24 +212,30 @@ export function Dashboard({ theme }) {
                         }}>Contribution</span>
                       )}
                     </div>
-                    <p className="repo-description">
+                    <p className="repo-description" style={{ marginBottom: '1rem' }}>
                       {repo.description || (isContribution 
                         ? "Open source repository contributed to by Vaishnav Gaware." 
                         : "Open source repository developed by Vaishnav Gaware.")}
                     </p>
                   </div>
-                  <div className="repo-meta-footer">
-                    <div className="repo-lang" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
-                      {((repo.languages_list && repo.languages_list.length > 0)
-                        ? repo.languages_list
-                        : (repo.language ? [repo.language] : [])
-                      ).map((lang, index) => (
-                        <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                          <span className="lang-dot" style={{ background: getLanguageColor(lang), margin: 0 }}></span>
-                          <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>{lang}</span>
-                        </div>
-                      ))}
-                    </div>
+
+                  {/* Languages Stats Bar */}
+                  <LanguageStatsBar languages={repo.languages} />
+
+                  <div className="repo-meta-footer" style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem', marginTop: '0.85rem' }}>
+                    {(!repo.languages || Object.keys(repo.languages).length === 0) ? (
+                      <div className="repo-lang" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+                        {((repo.languages_list && repo.languages_list.length > 0)
+                          ? repo.languages_list
+                          : (repo.language ? [repo.language] : [])
+                        ).map((lang, index) => (
+                          <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                            <span className="lang-dot" style={{ background: getLanguageColor(lang), margin: 0 }}></span>
+                            <span style={{ fontSize: '0.8rem', fontWeight: 600 }}>{lang}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ) : <div></div>}
                     <div className="repo-stats-aside">
                       <span><Star style={{ width: 12, height: 12 }} /> {repo.stargazers_count}</span>
                       <span><GitFork style={{ width: 12, height: 12 }} /> {repo.forks_count}</span>

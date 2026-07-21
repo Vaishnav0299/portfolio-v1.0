@@ -142,7 +142,13 @@
         "Python",
         "CSS",
         "HTML"
-      ]
+      ],
+      "languages": {
+        "JavaScript": 78432,
+        "Python": 5580,
+        "CSS": 1936,
+        "HTML": 905
+      }
     },
     {
       "id": 1278878098,
@@ -250,7 +256,12 @@
         "TypeScript",
         "CSS",
         "HTML"
-      ]
+      ],
+      "languages": {
+        "TypeScript": 70372,
+        "CSS": 773,
+        "HTML": 311
+      }
     },
     {
       "id": 1272249985,
@@ -358,7 +369,12 @@
         "TypeScript",
         "CSS",
         "HTML"
-      ]
+      ],
+      "languages": {
+        "TypeScript": 125401,
+        "CSS": 413,
+        "HTML": 311
+      }
     },
     {
       "id": 1272001886,
@@ -467,7 +483,13 @@
         "JavaScript",
         "CSS",
         "HTML"
-      ]
+      ],
+      "languages": {
+        "TypeScript": 360062,
+        "JavaScript": 18671,
+        "CSS": 8515,
+        "HTML": 1133
+      }
     },
     {
       "id": 1271076114,
@@ -574,7 +596,11 @@
       "languages_list": [
         "JavaScript",
         "TypeScript"
-      ]
+      ],
+      "languages": {
+        "JavaScript": 15216,
+        "TypeScript": 1316
+      }
     },
     {
       "id": 1149374625,
@@ -659,7 +685,12 @@
         "CSS",
         "JavaScript",
         "HTML"
-      ]
+      ],
+      "languages": {
+        "CSS": 99117,
+        "JavaScript": 79488,
+        "HTML": 854
+      }
     }
   ],
   "compiledAt": 1784368470

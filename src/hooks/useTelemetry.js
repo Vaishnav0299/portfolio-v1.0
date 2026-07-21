@@ -94,7 +94,8 @@ export function useTelemetry(username = 'Vaishnav0299') {
                   const langs = await res.json();
                   return {
                     ...repo,
-                    languages_list: Object.keys(langs)
+                    languages_list: Object.keys(langs),
+                    languages: langs
                   };
                 }
               } catch (e) {
