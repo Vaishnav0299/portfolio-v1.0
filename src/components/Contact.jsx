@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import { aboutData } from '../data/portfolioData';
 
 export function Contact({ onShowToast }) {
@@ -26,17 +26,7 @@ export function Contact({ onShowToast }) {
             </a>
           </div>
 
-          <div class="contact-social-bar">
-            <span>Connect on socials:</span>
-            <div class="social-quick-links" style={{ justifyContent: 'center' }}>
-              <a href={aboutData.github} target="_blank" rel="noreferrer" title="GitHub">
-                <Github style={{ width: 20, height: 20 }} />
-              </a>
-              <a href={aboutData.linkedin} target="_blank" rel="noreferrer" title="LinkedIn">
-                <Linkedin style={{ width: 20, height: 20 }} />
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>

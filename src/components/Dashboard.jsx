@@ -15,15 +15,22 @@ export function Dashboard({ theme }) {
   };
 
 
-  // Sort repos dynamically in React to determine top repo
+  // Sort repos dynamically in React to determine top repo (only from owned repositories)
   const topRepo = repos && repos.length > 0
-    ? [...repos].sort((a, b) => {
-        if (b.stargazers_count !== a.stargazers_count) {
-          return b.stargazers_count - a.stargazers_count;
-        }
-        return new Date(b.updated_at) - new Date(a.updated_at);
-      })[0]
+    ? [...repos]
+        .filter(r => r.owner && r.owner.login.toLowerCase() === 'vaishnav0299')
+        .sort((a, b) => {
+          if (b.stargazers_count !== a.stargazers_count) {
+            return b.stargazers_count - a.stargazers_count;
+          }
+          return new Date(b.updated_at) - new Date(a.updated_at);
+        })[0]
     : null;
+
+  // Sort all repos by push/update time to showcase recent activity first
+  const sortedRepos = repos && repos.length > 0
+    ? [...repos].sort((a, b) => new Date(b.pushed_at || b.updated_at) - new Date(a.pushed_at || a.updated_at))
+    : [];
 
   return (
     <section id="dashboard" className="dashboard-section">
@@ -172,27 +179,49 @@ export function Dashboard({ theme }) {
               <div className="skeleton-card"></div>
               <div className="skeleton-card"></div>
             </>
-          ) : repos.length === 0 ? (
+          ) : sortedRepos.length === 0 ? (
             <p style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text-muted)' }}>No public repositories found.</p>
           ) : (
-            repos.slice(0, 6).map(repo => (
-              <div key={repo.id} className="repo-card">
-                <div>
-                  <a href={repo.html_url} target="_blank" rel="noreferrer" className="repo-name">{repo.name}</a>
-                  <p className="repo-description">{repo.description || "Open source repository developed by Vaishnav Gaware."}</p>
-                </div>
-                <div className="repo-meta-footer">
-                  <div className="repo-lang">
-                    <span className="lang-dot"></span>
-                    <span>{repo.language || "Code"}</span>
+            sortedRepos.slice(0, 6).map(repo => {
+              const isContribution = repo.owner && repo.owner.login.toLowerCase() !== 'vaishnav0299';
+              return (
+                <div key={repo.id} className="repo-card">
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.6rem' }}>
+                      <a href={repo.html_url} target="_blank" rel="noreferrer" className="repo-name" style={{ marginBottom: 0 }}>
+                        {isContribution ? repo.full_name : repo.name}
+                      </a>
+                      {isContribution && (
+                        <span className="contribution-badge" style={{
+                          fontSize: '0.7rem',
+                          padding: '0.15rem 0.4rem',
+                          borderRadius: '4px',
+                          background: 'rgba(59, 130, 246, 0.15)',
+                          color: '#60a5fa',
+                          border: '1px solid rgba(59, 130, 246, 0.3)',
+                          fontWeight: 600
+                        }}>Contribution</span>
+                      )}
+                    </div>
+                    <p className="repo-description">
+                      {repo.description || (isContribution 
+                        ? "Open source repository contributed to by Vaishnav Gaware." 
+                        : "Open source repository developed by Vaishnav Gaware.")}
+                    </p>
                   </div>
-                  <div className="repo-stats-aside">
-                    <span><Star style={{ width: 12, height: 12 }} /> {repo.stargazers_count}</span>
-                    <span><GitFork style={{ width: 12, height: 12 }} /> {repo.forks_count}</span>
+                  <div className="repo-meta-footer">
+                    <div className="repo-lang">
+                      <span className="lang-dot"></span>
+                      <span>{repo.language || "Code"}</span>
+                    </div>
+                    <div className="repo-stats-aside">
+                      <span><Star style={{ width: 12, height: 12 }} /> {repo.stargazers_count}</span>
+                      <span><GitFork style={{ width: 12, height: 12 }} /> {repo.forks_count}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
+              );
+            })
           )}
         </div>
       </div>

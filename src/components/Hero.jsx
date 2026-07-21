@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { aboutData } from '../data/portfolioData';
 
 export function Hero() {
@@ -20,7 +20,7 @@ export function Hero() {
 
         <div className="badge-container">
           <span className="status-badge">
-            <span className="pulse-dot"></span> Available for Opportunities
+            <span className="pulse-dot"></span> Building Something New
           </span>
         </div>
         
@@ -53,17 +53,7 @@ export function Hero() {
           </Link>
         </div>
 
-        <div className="social-quick-links">
-          <a href={aboutData.github} target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub Profile">
-            <Github style={{ width: 20, height: 20 }} />
-          </a>
-          <a href={aboutData.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn Profile">
-            <Linkedin style={{ width: 20, height: 20 }} />
-          </a>
-          <a href={`mailto:${aboutData.email}`} aria-label="Mail" title="Send Email">
-            <Mail style={{ width: 20, height: 20 }} />
-          </a>
-        </div>
+
       </div>
     </section>
   );

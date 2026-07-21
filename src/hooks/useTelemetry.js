@@ -45,10 +45,48 @@ export function useTelemetry(username = 'Vaishnav0299') {
           const publicRepos = Array.isArray(rawRepos)
             ? rawRepos.filter(r => !r.private && !isCourseOrFork(r))
             : [];
+
+          // Try to discover contributed repos from events and a predefined list
+          const contributedNames = new Set(['devabokare/Deva-Portfolio-master']);
+          try {
+            const eventsRes = await fetch(`https://api.github.com/users/${username}/events/public`);
+            if (eventsRes.ok) {
+              const events = await eventsRes.json();
+              if (Array.isArray(events)) {
+                events.forEach(event => {
+                  if (event.repo && event.repo.name) {
+                    const [owner] = event.repo.name.split('/');
+                    if (owner && owner.toLowerCase() !== username.toLowerCase()) {
+                      contributedNames.add(event.repo.name);
+                    }
+                  }
+                });
+              }
+            }
+          } catch (e) {
+            console.warn('Failed to fetch public events:', e);
+          }
+
+          // Fetch details for each contributed repo in parallel
+          const contributedRepos = [];
+          const fetchedNames = Array.from(contributedNames);
+          await Promise.all(
+            fetchedNames.map(async (name) => {
+              try {
+                const res = await fetch(`https://api.github.com/repos/${name}`);
+                if (res.ok) {
+                  const repoData = await res.json();
+                  contributedRepos.push(repoData);
+                }
+              } catch (e) {
+                console.warn(`Failed to fetch repo details for ${name}:`, e);
+              }
+            })
+          );
           
           setData({
             profile,
-            repos: publicRepos,
+            repos: [...publicRepos, ...contributedRepos],
             compiledAt: Math.floor(Date.now() / 1000),
           });
         } catch (apiErr) {
