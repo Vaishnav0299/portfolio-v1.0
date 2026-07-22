@@ -33,13 +33,6 @@ export function Home() {
       link: '/terminal',
       icon: TermIcon,
       colorClass: 'accent-amber',
-    },
-    {
-      title: 'Get In Touch',
-      desc: 'Contact me directly for collaboration, opportunities, or technical inquiries.',
-      link: '/contact',
-      icon: Mail,
-      colorClass: 'accent-rose',
     }
   ];
 

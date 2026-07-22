@@ -47,10 +47,30 @@ export function Hero() {
             <span>Explore Projects</span>
             <ArrowRight style={{ width: 18, height: 18 }} />
           </Link>
-          <Link to="/contact" className="btn btn-secondary">
-            <Mail style={{ width: 18, height: 18 }} />
-            <span>Get In Touch</span>
-          </Link>
+        </div>
+
+        {/* Quick Hero Metrics Strip */}
+        <div className="hero-metrics-strip" style={{
+          display: 'flex',
+          justify: 'center',
+          gap: '2.5rem',
+          marginTop: '3rem',
+          paddingTop: '2rem',
+          borderTop: '1px solid var(--border-color)',
+          flexWrap: 'wrap'
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--accent-primary)', fontFamily: 'var(--font-mono)' }}>15+</div>
+            <div style={{ fontSize: '0.825rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Public Repositories</div>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--accent-secondary)', fontFamily: 'var(--font-mono)' }}>10+</div>
+            <div style={{ fontSize: '0.825rem', color: 'var(--text-secondary)', fontWeight: 600 }}>Frameworks & Libraries</div>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--accent-tertiary)', fontFamily: 'var(--font-mono)' }}>B.E</div>
+            <div style={{ fontSize: '0.825rem', color: 'var(--text-secondary)', fontWeight: 600 }}>AI & Data Science</div>
+          </div>
         </div>
 
 

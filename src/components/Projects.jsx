@@ -1,64 +1,119 @@
 import React, { useState } from 'react';
-import { Github } from 'lucide-react';
+import { Github, Search, Info } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredProjects = activeFilter === 'all'
-    ? projectsData
-    : projectsData.filter(p => p.category === activeFilter);
+  const filteredProjects = projectsData.filter(proj => {
+    const matchesCategory = activeFilter === 'all' || proj.category === activeFilter;
+    const matchesSearch = proj.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          proj.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          proj.stack.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
 
   return (
-    <section id="projects" class="projects-section">
-      <div class="section-header">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">Production-grade web applications, AI models, and automated data pipelines.</p>
+    <section id="projects" className="projects-section">
+      <div className="section-header">
+        <h2 className="section-title">Featured Projects</h2>
+        <p className="section-subtitle">Production-grade web applications, AI models, and automated data pipelines.</p>
       </div>
 
-      {/* Category Filter Bar */}
-      <div class="project-filter-bar">
-        <button
-          class={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
-          onClick={() => setActiveFilter('all')}
-        >
-          All Projects
-        </button>
-        <button
-          class={`filter-btn ${activeFilter === 'fullstack' ? 'active' : ''}`}
-          onClick={() => setActiveFilter('fullstack')}
-        >
-          Full-Stack
-        </button>
-        <button
-          class={`filter-btn ${activeFilter === 'ai' ? 'active' : ''}`}
-          onClick={() => setActiveFilter('ai')}
-        >
-          AI & Automation
-        </button>
+      {/* Search & Category Filter Controls */}
+      <div className="projects-control-bar" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', marginBottom: '2.5rem', alignItems: 'center' }}>
+        
+        {/* Search Bar */}
+        <div style={{ position: 'relative', width: '100%', maxWidth: '480px' }}>
+          <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', width: 18, height: 18, color: 'var(--text-muted)' }} />
+          <input
+            type="text"
+            placeholder="Search projects by name, description, or tech stack..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{
+              width: '100%',
+              padding: '0.75rem 1rem 0.75rem 2.8rem',
+              borderRadius: '12px',
+              border: '1px solid var(--border-color)',
+              background: 'var(--bg-surface)',
+              color: 'var(--text-primary)',
+              fontSize: '0.9rem',
+              backdropFilter: 'blur(12px)',
+              outline: 'none',
+              transition: 'border-color 0.2s ease'
+            }}
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              style={{ position: 'absolute', right: '0.75rem', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.85rem' }}
+            >
+              Clear
+            </button>
+          )}
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="project-filter-bar" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <button
+            className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('all')}
+          >
+            All Projects ({projectsData.length})
+          </button>
+          <button
+            className={`filter-btn ${activeFilter === 'fullstack' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('fullstack')}
+          >
+            Full-Stack ({projectsData.filter(p => p.category === 'fullstack').length})
+          </button>
+          <button
+            className={`filter-btn ${activeFilter === 'ai' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('ai')}
+          >
+            AI & Automation ({projectsData.filter(p => p.category === 'ai').length})
+          </button>
+        </div>
       </div>
 
       {/* Projects Grid */}
-      <div class="projects-grid" id="portfolio-project-grid">
+      <div className="projects-grid" id="portfolio-project-grid">
         {filteredProjects.length === 0 ? (
-          <p style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text-muted)', padding: '2rem' }}>
-            No projects found in this category.
-          </p>
+          <div style={{ gridColumn: '1/-1', textAlign: 'center', color: 'var(--text-muted)', padding: '3rem 1rem', background: 'var(--bg-surface)', borderRadius: '16px', border: '1px dashed var(--border-color)' }}>
+            <Info style={{ width: 32, height: 32, marginBottom: '0.75rem', color: 'var(--accent-primary)' }} />
+            <p style={{ margin: 0, fontSize: '1rem', fontWeight: 600 }}>No projects match your search query.</p>
+            <p style={{ fontSize: '0.875rem', marginTop: '0.35rem' }}>Try clearing filters or searching for different tech keywords.</p>
+          </div>
         ) : (
           filteredProjects.map(proj => (
-            <div key={proj.id} class="portfolio-card" data-category={proj.category}>
+            <div
+              key={proj.id}
+              className="portfolio-card"
+              style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            >
               <div>
-                <span class={`proj-badge ${proj.badgeClass}`}>{proj.type}</span>
+                <div style={{ marginBottom: '0.75rem' }}>
+                  <span className={`proj-badge ${proj.badgeClass}`}>{proj.type}</span>
+                </div>
                 <h3>{proj.name}</h3>
                 <p>{proj.desc}</p>
-                <div class="tech-tag-wrap">
+                <div className="tech-tag-wrap" style={{ marginTop: '1rem' }}>
                   {proj.stack.map((tag, idx) => (
-                    <span key={idx} class="tech-tag">{tag}</span>
+                    <span key={idx} className="tech-tag">{tag}</span>
                   ))}
                 </div>
               </div>
-              <div class="project-actions" style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem' }}>
-                <a href={proj.github} target="_blank" rel="noreferrer" class="btn btn-secondary btn-sm" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', borderRadius: '6px' }}>
+
+              <div className="project-actions" style={{ marginTop: '1.5rem', display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                <a
+                  href={proj.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-secondary btn-sm"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', borderRadius: '8px' }}
+                >
                   <Github style={{ width: 14, height: 14 }} /> GitHub
                 </a>
               </div>

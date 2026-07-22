@@ -6,8 +6,8 @@ export function Contact({ onShowToast }) {
 
   return (
     <section id="contact" class="contact-section">
-      <div class="section-header">
-        <h2 class="section-title">Get In Touch</h2>
+      <div className="section-header">
+        <h2 className="section-title">Contact Me</h2>
         <p class="section-subtitle">Have a project, opportunity, or question? Feel free to reach out directly.</p>
       </div>
 
