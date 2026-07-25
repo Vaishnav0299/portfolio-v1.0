@@ -40,7 +40,12 @@ export function Contact({ onShowToast }) {
     setErrorMsg('');
 
     try {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "89e0f7b2-7cb6-4098-98f6-440713d5bc7c";
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+      if (!accessKey) {
+        setIsSubmitting(false);
+        setErrorMsg('Contact form configuration error: VITE_WEB3FORMS_ACCESS_KEY is not configured.');
+        return;
+      }
       payload.append("access_key", accessKey);
       payload.append("name", formData.name);
       payload.append("email", formData.email);
