@@ -64,6 +64,12 @@ export function Projects() {
             All Projects ({projectsData.length})
           </button>
           <button
+            className={`filter-btn ${activeFilter === 'data-analytics' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('data-analytics')}
+          >
+            Data Analytics & ML ({projectsData.filter(p => p.category === 'data-analytics').length})
+          </button>
+          <button
             className={`filter-btn ${activeFilter === 'fullstack' ? 'active' : ''}`}
             onClick={() => setActiveFilter('fullstack')}
           >
@@ -94,8 +100,9 @@ export function Projects() {
               style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
             >
               <div>
-                <div style={{ marginBottom: '0.75rem' }}>
+                <div style={{ marginBottom: '0.85rem', display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
                   <span className={`proj-badge ${proj.badgeClass}`}>{proj.type}</span>
+                  <span className="proj-category-tag">{proj.categoryName || proj.category}</span>
                 </div>
                 <h3>{proj.name}</h3>
                 <p>{proj.desc}</p>

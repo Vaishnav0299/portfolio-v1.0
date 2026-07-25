@@ -52,11 +52,12 @@ export function Terminal() {
     ],
     projects: [
       "🚀 Featured Repositories:",
-      "  1. <span style='color: #8b5cf6; font-weight: bold;'>Productivity-Pro</span> [Full-Stack Collaborative Workspace]",
-      "  2. <span style='color: #06b6d4; font-weight: bold;'>My Study Assistant</span> [AI Study & Flashcard Platform]",
-      "  3. <span style='color: #ec4899; font-weight: bold;'>Deskify</span> [Client-side Wallpaper Utility]",
-      "  4. <span style='color: #10b981; font-weight: bold;'>Form-Builder</span> [Drag & Drop Form Canvas]",
-      "  5. <span style='color: #eab308; font-weight: bold;'>Mentor Backend</span> [REST API Service]"
+      "  1. <span style='color: #8b5cf6; font-weight: bold;'>Sales Analytics & Churn Prediction</span> [Data Analytics & ML Model]",
+      "  2. <span style='color: #06b6d4; font-weight: bold;'>Productivity-Pro</span> [Full-Stack Collaborative Workspace]",
+      "  3. <span style='color: #ec4899; font-weight: bold;'>My Study Assistant</span> [AI Study & Flashcard Platform]",
+      "  4. <span style='color: #10b981; font-weight: bold;'>Deskify</span> [Client-side Wallpaper Utility]",
+      "  5. <span style='color: #eab308; font-weight: bold;'>Form-Builder</span> [Drag & Drop Form Canvas]",
+      "  6. <span style='color: #a855f7; font-weight: bold;'>Mentor Backend</span> [REST API Service]"
     ],
     contact: [
       "📫 Contact Channels:",

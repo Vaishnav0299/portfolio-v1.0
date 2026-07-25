@@ -1,10 +1,33 @@
 export const projectsData = [
     {
         id: 1,
+        category: "data-analytics",
+        categoryName: "Data Analytics & ML",
+        name: "Sales Analytics & Customer Churn Prediction",
+        type: "Data Analytics & ML",
+        badgeClass: "data",
+        desc: "An end-to-end data analytics & ML project: exploratory sales analysis, KPI/cohort reporting, and a customer churn prediction model with an interactive Streamlit app.",
+        longDesc: "Sales Analytics & Customer Churn Prediction delivers comprehensive exploratory data analysis (EDA), customer RFM & cohort retention metrics, feature engineering, and a Scikit-Learn machine learning pipeline to predict customer churn probability with real-time Streamlit UI inference.",
+        features: [
+            "Exploratory Data Analysis (EDA) & sales KPI cohort retention breakdown",
+            "Customer Churn Prediction Machine Learning model (Scikit-Learn pipeline)",
+            "Interactive Streamlit web application for live model inference",
+            "Exported executive report and reproducible Jupyter Notebook pipeline"
+        ],
+        architecture: "Python analytical pipeline using Pandas, NumPy, Scikit-Learn, and Seaborn for EDA & ML modeling. Interactive inference UI served via Streamlit.",
+        stack: ["Python", "Scikit-Learn", "Pandas", "Streamlit", "Jupyter", "Seaborn"],
+        github: "https://github.com/Vaishnav0299/Sales-Analytics-Customer-Churn-Prediction",
+        live: "https://github.com/Vaishnav0299/Sales-Analytics-Customer-Churn-Prediction",
+        stars: 1,
+        status: "Completed"
+    },
+    {
+        id: 2,
         category: "fullstack",
+        categoryName: "Full-Stack Workspace",
         name: "Productivity-Pro",
         type: "Full Stack Workspace",
-        badgeClass: "",
+        badgeClass: "fullstack",
         desc: "Enterprise-ready collaborative real-time workspace application integrating workspaces, kanban boards, collaborative documents, presence indicators, and administrative audit panels.",
         longDesc: "Productivity-Pro is designed for engineering teams requiring sub-millisecond collaboration, live document synchronization, drag-and-drop workflow automation, and structured task management.",
         features: [
@@ -21,8 +44,9 @@ export const projectsData = [
         status: "Production Ready"
     },
     {
-        id: 2,
+        id: 3,
         category: "ai",
+        categoryName: "AI & Automation",
         name: "My Study Assistant",
         type: "AI & Automation",
         badgeClass: "ai",
@@ -42,11 +66,12 @@ export const projectsData = [
         status: "Active Development"
     },
     {
-        id: 3,
+        id: 4,
         category: "fullstack",
+        categoryName: "Web Utility",
         name: "Deskify",
         type: "Web Utility",
-        badgeClass: "",
+        badgeClass: "fullstack",
         desc: "A lightweight, 100% client-side web utility to instantly convert vertical mobile wallpapers into widescreen desktop backgrounds. Zero backend, zero tracking, pure JavaScript.",
         longDesc: "Deskify utilizes HTML5 Canvas rendering routines to intelligently extend mobile wallpaper aspect ratios into crisp widescreen desktop wallpapers with custom blur margins and color sampling.",
         features: [
@@ -63,11 +88,12 @@ export const projectsData = [
         status: "Completed"
     },
     {
-        id: 4,
+        id: 5,
         category: "fullstack",
+        categoryName: "Full-Stack Tool",
         name: "Form-Builder",
         type: "Full Stack Tool",
-        badgeClass: "",
+        badgeClass: "fullstack",
         desc: "Dynamic drag-and-drop form creation engine featuring customizable field validation, interactive preview controls, and JSON schema export.",
         longDesc: "Form-Builder allows developers and non-technical teams to compose complex multi-step forms using an intuitive drag-and-drop interface, complete with custom Regex validation and schema generation.",
         features: [
@@ -84,11 +110,12 @@ export const projectsData = [
         status: "Completed"
     },
     {
-        id: 5,
+        id: 6,
         category: "fullstack",
+        categoryName: "Backend API",
         name: "Mentor Backend Service",
         type: "Backend API",
-        badgeClass: "",
+        badgeClass: "fullstack",
         desc: "Scalable Node.js REST API service providing mentorship matching workflows, session scheduling, authentication, and database persistence.",
         longDesc: "A modular microservice architecture providing secure JWT authentication, session booking algorithms, availability slot management, and user relationship mapping.",
         features: [
