@@ -1,24 +1,17 @@
 {
-  "name": "vaishnav0299-portfolio",
+  "name": "portfolio-v2",
   "private": true,
   "version": "2.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "lucide-react": "^0.344.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^7.18.1",
-    "three": "^0.185.1"
+    "dev": "pnpm --filter @portfolio/web dev",
+    "build": "pnpm --filter @portfolio/web build",
+    "preview": "pnpm --filter @portfolio/web preview",
+    "dev:api": "pnpm --filter @portfolio/api dev",
+    "build:api": "pnpm --filter @portfolio/api build",
+    "seed": "pnpm --filter @portfolio/api seed",
+    "lint": "pnpm -r lint"
   },
   "devDependencies": {
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.1.6"
+    "typescript": "^5.4.5"
   }
 }

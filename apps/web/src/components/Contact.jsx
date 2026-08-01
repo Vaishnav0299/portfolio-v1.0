@@ -40,39 +40,54 @@ export function Contact({ onShowToast }) {
     setErrorMsg('');
 
     try {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-      if (!accessKey) {
-        setIsSubmitting(false);
-        setErrorMsg('Contact form configuration error: VITE_WEB3FORMS_ACCESS_KEY is not configured.');
-        return;
-      }
-      payload.append("access_key", accessKey);
-      payload.append("name", formData.name);
-      payload.append("email", formData.email);
-      payload.append("message", formData.message);
-      payload.append("from_name", "Portfolio Contact Form");
-      payload.append("subject", `[Portfolio Message] New message from ${formData.name}`);
-
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: payload
+      // Primary: POST to /api/contact (saves to DB + forwards to Web3Forms server-side)
+      const apiRes = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
       });
 
-      const resData = await response.json();
+      const apiData = await apiRes.json();
 
       setIsSubmitting(false);
 
-      if (resData.success) {
+      if (apiData.success) {
         setIsSubmitted(true);
-        if (onShowToast) {
-          onShowToast('Message sent! It will arrive in your inbox.');
-        }
-      } else {
-        setErrorMsg(resData.message || 'Failed to send message. Please try again.');
+        if (onShowToast) onShowToast('Message sent! It will arrive in your inbox.');
+        return;
       }
-    } catch (err) {
-      setIsSubmitting(false);
-      setErrorMsg('Network error. Unable to send message. Please try again later.');
+      throw new Error(apiData.error ?? 'API submission failed');
+    } catch (apiErr) {
+      // Fallback: submit directly to Web3Forms if API is unreachable
+      try {
+        const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+        if (!accessKey) throw new Error('No fallback configured');
+
+        payload.append('access_key', accessKey);
+        payload.append('name', formData.name);
+        payload.append('email', formData.email);
+        payload.append('message', formData.message);
+        payload.append('from_name', 'Portfolio Contact Form');
+        payload.append('subject', `[Portfolio Message] New message from ${formData.name}`);
+
+        const fallbackRes = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: payload });
+        const fallbackData = await fallbackRes.json();
+        setIsSubmitting(false);
+
+        if (fallbackData.success) {
+          setIsSubmitted(true);
+          if (onShowToast) onShowToast('Message sent! It will arrive in your inbox.');
+        } else {
+          setErrorMsg(fallbackData.message || 'Failed to send message. Please try again.');
+        }
+      } catch {
+        setIsSubmitting(false);
+        setErrorMsg('Network error. Unable to send message. Please try again later.');
+      }
     }
   };
 
