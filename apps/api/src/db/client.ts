@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import path from 'node:path';
 import postgres from 'postgres';
 import { drizzle } from 'drizzle-orm/postgres-js';
-import * as schema from './schema';
+import * as schema from './schema.js';
 
 // Load root .env file if process.env.DATABASE_URL is not set
 config({ path: path.resolve(process.cwd(), '../../.env') });

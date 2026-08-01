@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { db } from '../db/client';
+import { db } from '../db/client.js';
 import { sql } from 'drizzle-orm';
 
 const health = new Hono();

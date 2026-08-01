@@ -1,10 +1,10 @@
 import { Hono } from 'hono';
 import { eq } from 'drizzle-orm';
 import { zValidator } from '@hono/zod-validator';
-import { db } from '../db/client';
-import { skills } from '../db/schema';
+import { db } from '../db/client.js';
+import { skills } from '../db/schema.js';
 import { skillSchema } from '@portfolio/shared';
-import { authMiddleware } from '../middleware/auth';
+import { authMiddleware } from '../middleware/auth.js';
 
 const skillsRouter = new Hono();
 

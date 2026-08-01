@@ -1,5 +1,5 @@
-import { db } from '../db/client';
-import { syncLog } from '../db/schema';
+import { db } from '../db/client.js';
+import { syncLog } from '../db/schema.js';
 import { eq } from 'drizzle-orm';
 
 /**

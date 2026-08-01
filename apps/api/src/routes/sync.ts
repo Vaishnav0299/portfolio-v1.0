@@ -1,10 +1,10 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
 import { syncBatchSchema } from '@portfolio/shared';
-import { authMiddleware } from '../middleware/auth';
-import { checkIdempotency, recordOperation } from '../lib/idempotency';
-import { db } from '../db/client';
-import { projects, skills, timeline } from '../db/schema';
+import { authMiddleware } from '../middleware/auth.js';
+import { checkIdempotency, recordOperation } from '../lib/idempotency.js';
+import { db } from '../db/client.js';
+import { projects, skills, timeline, bio } from '../db/schema.js';
 import { eq } from 'drizzle-orm';
 
 const sync = new Hono();

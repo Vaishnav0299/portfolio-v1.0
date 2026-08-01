@@ -1,14 +1,14 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
-import { notFound } from './middleware/errorHandler';
-import healthRouter   from './routes/health';
-import authRouter     from './routes/auth';
-import projectsRouter from './routes/projects';
-import skillsRouter   from './routes/skills';
-import timelineRouter from './routes/timeline';
-import bioRouter      from './routes/bio';
-import contactRouter  from './routes/contact';
-import syncRouter     from './routes/sync';
+import { notFound } from './middleware/errorHandler.js';
+import healthRouter   from './routes/health.js';
+import authRouter     from './routes/auth.js';
+import projectsRouter from './routes/projects.js';
+import skillsRouter   from './routes/skills.js';
+import timelineRouter from './routes/timeline.js';
+import bioRouter      from './routes/bio.js';
+import contactRouter  from './routes/contact.js';
+import syncRouter     from './routes/sync.js';
 
 const app = new Hono().basePath('/api');
 

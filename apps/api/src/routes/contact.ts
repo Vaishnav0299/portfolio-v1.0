@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
-import { db } from '../db/client';
-import { messages } from '../db/schema';
+import { db } from '../db/client.js';
+import { messages } from '../db/schema.js';
 import { contactSchema } from '@portfolio/shared';
 
 const contact = new Hono();

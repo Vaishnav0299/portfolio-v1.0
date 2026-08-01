@@ -1,9 +1,9 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
-import { db } from '../db/client';
-import { bio } from '../db/schema';
+import { db } from '../db/client.js';
+import { bio } from '../db/schema.js';
 import { bioSchema } from '@portfolio/shared';
-import { authMiddleware } from '../middleware/auth';
+import { authMiddleware } from '../middleware/auth.js';
 import { sql } from 'drizzle-orm';
 
 const bioRouter = new Hono();
