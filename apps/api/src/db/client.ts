@@ -22,6 +22,7 @@ const client = postgres(connectionString, {
   idle_timeout: 20,
   connect_timeout: 10,
   prepare: false,          // Required for Supabase PgBouncer in transaction mode
+  ssl: 'require',          // Explicit SSL mode for Supabase pooled cloud connection
 });
 
 export const db = drizzle(client, { schema });
