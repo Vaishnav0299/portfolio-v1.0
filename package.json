@@ -7,7 +7,7 @@
     "dev": "pnpm --parallel --filter \"@portfolio/*\" dev",
     "dev:web": "pnpm --filter @portfolio/web dev",
     "dev:api": "pnpm --filter @portfolio/api dev",
-    "build": "pnpm --filter @portfolio/web build",
+    "build": "pnpm --filter @portfolio/shared build && pnpm --filter @portfolio/web build",
     "preview": "pnpm --filter @portfolio/web preview",
     "build:api": "pnpm --filter @portfolio/api build",
     "seed": "pnpm --filter @portfolio/api seed",

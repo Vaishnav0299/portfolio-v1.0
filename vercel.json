@@ -1,10 +1,10 @@
 {
-  "buildCommand": "pnpm --filter @portfolio/web build",
+  "buildCommand": "pnpm --filter @portfolio/shared build && pnpm --filter @portfolio/web build",
   "outputDirectory": "apps/web/dist",
   "installCommand": "npm install -g pnpm && pnpm install",
   "functions": {
     "api/index.ts": {
-      "includeFiles": "apps/api/**"
+      "includeFiles": "{apps/api/**,packages/shared/**}"
     }
   },
   "rewrites": [
