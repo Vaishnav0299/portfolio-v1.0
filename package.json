@@ -3,10 +3,11 @@
   "private": true,
   "version": "2.0.0",
   "scripts": {
-    "dev": "pnpm --filter @portfolio/web dev",
+    "dev": "pnpm --parallel --filter \"@portfolio/*\" dev",
+    "dev:web": "pnpm --filter @portfolio/web dev",
+    "dev:api": "pnpm --filter @portfolio/api dev",
     "build": "pnpm --filter @portfolio/web build",
     "preview": "pnpm --filter @portfolio/web preview",
-    "dev:api": "pnpm --filter @portfolio/api dev",
     "build:api": "pnpm --filter @portfolio/api build",
     "seed": "pnpm --filter @portfolio/api seed",
     "lint": "pnpm -r lint"

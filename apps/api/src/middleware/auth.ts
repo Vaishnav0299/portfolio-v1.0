@@ -1,5 +1,5 @@
 import { type Context, type Next } from 'hono';
-import { verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 export async function authMiddleware(c: Context, next: Next) {
   const authHeader = c.req.header('Authorization');
@@ -17,7 +17,7 @@ export async function authMiddleware(c: Context, next: Next) {
   }
 
   try {
-    const payload = verify(token, secret);
+    const payload = jwt.verify(token, secret);
     c.set('jwtPayload', payload);
     await next();
   } catch (err) {
