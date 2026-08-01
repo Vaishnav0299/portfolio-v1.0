@@ -17,7 +17,7 @@ export async function authMiddleware(c: Context, next: Next) {
   }
 
   try {
-    const payload = jwt.verify(token, secret);
+    const payload = jwt.verify(token, secret, { algorithms: ['HS256'] });
     c.set('jwtPayload', payload);
     await next();
   } catch (err) {

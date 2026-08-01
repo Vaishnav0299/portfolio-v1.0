@@ -6,8 +6,8 @@
  * Usage: pnpm --filter @portfolio/api seed
  */
 import 'dotenv/config';
-import { db } from './client';
-import { projects, skills, timeline, bio } from './schema';
+import { db } from './client.js';
+import { projects, skills, timeline, bio } from './schema.js';
 import { sql } from 'drizzle-orm';
 
 // ─── Seed Data (sourced from static portfolioData.js) ───────────────────────
