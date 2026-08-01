@@ -2,6 +2,11 @@
   "buildCommand": "pnpm --filter @portfolio/web build",
   "outputDirectory": "apps/web/dist",
   "installCommand": "npm install -g pnpm && pnpm install",
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "apps/api/**"
+    }
+  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index" },
     { "source": "/(.*)",     "destination": "/index.html" }

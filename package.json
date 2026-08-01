@@ -12,7 +12,21 @@
     "seed": "pnpm --filter @portfolio/api seed",
     "lint": "pnpm -r lint"
   },
+  "dependencies": {
+    "@portfolio/shared": "workspace:*",
+    "@hono/node-server": "^1.12.0",
+    "@hono/zod-validator": "^0.4.1",
+    "bcryptjs": "^2.4.3",
+    "drizzle-orm": "^0.31.4",
+    "hono": "^4.4.7",
+    "jsonwebtoken": "^9.0.2",
+    "postgres": "^3.4.4",
+    "zod": "^3.23.8"
+  },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.14.10",
     "typescript": "^5.4.5"
   }
 }
