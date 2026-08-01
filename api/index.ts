@@ -11,7 +11,7 @@ import { handle } from 'hono/vercel';
 import app from '../apps/api/src/index';
 
 export const config = {
-  runtime: 'nodejs20.x',
+  runtime: 'nodejs',
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
