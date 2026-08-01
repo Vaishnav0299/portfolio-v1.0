@@ -1,12 +1,18 @@
-import { config } from 'dotenv';
-import path from 'node:path';
 import postgres from 'postgres';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import * as schema from './schema.js';
 
-// Load root .env file if process.env.DATABASE_URL is not set
-config({ path: path.resolve(process.cwd(), '../../.env') });
-config({ path: path.resolve(process.cwd(), '.env') });
+// Load root .env file in local dev if process.env.DATABASE_URL is not set
+if (!process.env.DATABASE_URL) {
+  try {
+    const { config } = await import('dotenv');
+    const path = await import('node:path');
+    config({ path: path.resolve(process.cwd(), '../../.env') });
+    config({ path: path.resolve(process.cwd(), '.env') });
+  } catch {
+    // dotenv optional in production (env vars provided natively by Vercel)
+  }
+}
 
 if (!process.env.DATABASE_URL) {
   throw new Error('DATABASE_URL environment variable is not set');
