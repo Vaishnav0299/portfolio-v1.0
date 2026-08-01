@@ -39,7 +39,7 @@ export const projectsData = [
         architecture: "Client built with React & Next.js using TypeScript. State managed via optimistic updates and WebSockets for low-latency multi-user sync. Styled with CSS modules and Tailwind CSS.",
         stack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Node.js", "WebSockets"],
         github: "https://github.com/Vaishnav0299/Productivity-Pro",
-        live: "https://github.com/Vaishnav0299/Productivity-Pro",
+        live: "https://productivity-pro-bay.vercel.app",
         stars: 12,
         status: "Production Ready"
     },
@@ -61,7 +61,7 @@ export const projectsData = [
         architecture: "React interface communicating with an asynchronous Node.js microservice API. Uses prompt engineering pipelines and semantic text chunking for context retrieval.",
         stack: ["JavaScript", "React", "Node.js", "AI API", "Tailwind CSS", "Express"],
         github: "https://github.com/Vaishnav0299/my-study-assistant",
-        live: "https://github.com/Vaishnav0299/my-study-assistant",
+        live: "https://my-study-assistant-ten.vercel.app",
         stars: 18,
         status: "Active Development"
     },
