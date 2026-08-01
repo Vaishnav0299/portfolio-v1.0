@@ -14,14 +14,8 @@ if (!process.env.DATABASE_URL) {
   }
 }
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL environment variable is not set');
-}
-
-// Supabase PostgreSQL connection via postgres.js
-// Connection pooling is handled by Supabase's PgBouncer on port 6543
-// For serverless (Vercel), disable prepared statements
-const connectionString = process.env.DATABASE_URL;
+// Fallback connection string prevents top-level module evaluation crashes during build tracing
+const connectionString = process.env.DATABASE_URL || 'postgres://placeholder:placeholder@localhost:5432/placeholder';
 
 const client = postgres(connectionString, {
   max: 1,                  // Vercel serverless: single connection per invocation
